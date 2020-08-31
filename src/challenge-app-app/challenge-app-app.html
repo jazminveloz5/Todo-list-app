@@ -1,0 +1,64 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/challenge-componente/challenge-componente.html">
+<link rel="import" href="../../bower_components/componente2-challenge/componente2-challenge.html">
+
+<dom-module id="challenge-app-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      :componente2-challenge{
+align-self: center;
+      }
+    </style>
+    <challenge-app key="front.list.prueba" data="{{collection}}"></challenge-app>
+    <challenge-componente tarea="{{collection}}" style="color: black;"></challenge-componente>
+      <componente2-challenge collection="{{collection}}" style="color: black; align-items: center;"></componente2-challenge>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class ChallengeAppApp extends Polymer.Element {
+      static get is() { return 'challenge-app-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'challenge-app-app'
+          },
+ collection: {
+  type: Array,
+  value: function() {
+  return [];
+}
+ },
+  sirve: {
+  type: Boolean,
+ value: false,
+  notify: true
+ }
+  };
+ }
+  static get observers() {
+    return [
+    'Todos(collection.*)'
+  ]
+   }
+   Todos() {
+ console.log(this.collection);
+}
+  todoList(e) {
+  if (e.detail.value) {
+    this.sirve = true;
+    console.log(this.sirve);
+    }
+  }
+  }
+
+    window.customElements.define(ChallengeAppApp.is, ChallengeAppApp);
+  </script>
+</dom-module>
